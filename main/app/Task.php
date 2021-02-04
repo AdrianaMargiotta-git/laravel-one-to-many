@@ -13,4 +13,8 @@ class Task extends Model
     ];
 
     //inserire funzione per la relazione belongsTo
+    //un task è eseguito da un solo employee
+    public function employee(){
+        return $this->belongsTo(Employee::class);
+    }
 }

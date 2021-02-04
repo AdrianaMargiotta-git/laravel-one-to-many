@@ -20,7 +20,7 @@ class CreateTasksTable extends Migration
             $table->longText('description');
             $table->integer('priority');
             //foreign key
-            // $table->integer('employee_id')->unsigned()->index();
+            $table->integer('employee_id')->unsigned()->index();
 
             $table->timestamps();
         });

@@ -13,7 +13,9 @@ class AddForeignKeys extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('tasks', function (Blueprint $table)){
+            $table -> foreign('employee_id') //da terminare
+        }
     }
 
     /**

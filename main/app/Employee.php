@@ -13,5 +13,9 @@ class Employee extends Model
     ];
 
     //inserire funzione per la relazione hasMany
+    //un employee esegue più task
+    public function tasks(){
+        return $this->hasMany(Task::class);
+    }
 
 }
