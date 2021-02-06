@@ -13,4 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//mostra tutti i task
 Route::get('/', 'TaskController@index') -> name('home');
+
+//mostra un task
+Route::get('/show/{id}', 'TaskController@show') -> name('show');
+
+//crea un task
+Route::get('/create', 'TaskController@create') -> name('create');
+Route::post('/store', 'TaskController@store') -> name('store');
+
+//modifica un task
+Route::get('/edit/{id}', 'TaskController@edit') -> name('edit');
+Route::post('/update/{id}', 'TaskController@update') -> name('update');
