@@ -1,8 +1,16 @@
-laravel-one-to-many
+<strong><i>laravel-one-to-many</i></strong>
 
-GOAL: definire migration, model, factory e seeder per le seguenti entita':
-- employee: name, lastname, dateOfBirth
-- task: title, description, priority (valore intero da 1 a 5)
-Dopo aver creato tabelle, aggiunto relazioni, inserito dati fake, produrre le due index (per le due entita') come visto a lezione.
-OPZIONALE: provare a fare le altre funzioni di CRUD sulle due entita', come visto in classe (evitando delete)
-NOTA: la relazione e' tipo 1aN (uno-a-molti), ma dovete pensare autonomamente in che direzione e' la relazione e quindi dove sta la chiave esterna: un employee esegue piu' task, un task e' eseguito da un unico employee
+<hr>
+
+<p>Definire migration, model, factory e seeder per le seguenti entità:</p>
+<ul>
+<li>employee: name, lastname, dateOfBirth</li>
+<li>task: title, description, priority (valore intero da 1 a 5)</li>
+<li>Typlogies: name, description</li>
+</ul>
+
+<p>Dopo aver creato tabelle, aggiunto relazioni, inserito dati fake, produrre le index e le show di ogni entità.</p>
+
+<p>La relazione tra task e employee è di tipo 1aN (uno a molti) quindi: un employee esegue piu' task, un task e' eseguito da un unico employee</p>
+
+<p>La relazione tra task e typologies è di tipo NaM (molti a molti).</p>
