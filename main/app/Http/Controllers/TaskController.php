@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Task;
 use App\Employee;
+use App\Typology;
 
 class TaskController extends Controller
 {
@@ -67,6 +68,24 @@ class TaskController extends Controller
     }
 
 /********************TIPOLOGY********************/
-    
+    public function typologies_index(){
+        $typologies = Typology::all();
+        return view('pages.typologies-index', compact('typologies'));
+    }
+    public function typologies_show($id){
+        $typology = Typology::findOrFail($id);
+        return view('pages.typologies-show', compact('typology'));
+    }
+
+/********************EMPLOYEE********************/
+    public function employees_index() {
+        $employees = Employee::all();
+        return view('pages.employee-index', compact('employees'));
+    }
+
+    public function employees_show($id) {
+        $employee = Employee::findOrFail($id);
+        return view('pages.employee-show', compact('employee'));
+    }
 
 }

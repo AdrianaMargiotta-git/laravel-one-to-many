@@ -31,4 +31,10 @@ Route::post('/update/{id}', 'TaskController@update') -> name('update');
 //eliminare un task
 Route::get('/delete/{id}', 'TaskController@delete') -> name('delete');
 
-/********************TASK********************/
+/********************TIPOLOGY********************/
+Route::get('/typologies', 'TaskController@typologies_index') -> name('typologies-index');
+Route::get('/typologies/show/{id}', 'TaskController@typologies_show') -> name('typologies-show');
+
+/********************EMPLOYEE********************/
+Route::get('/employees', 'TaskController@employees_index') -> name('employees-index');
+Route::get('/employee/show/{id}', 'TaskController@employees_show') -> name('employees-show');
