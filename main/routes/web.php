@@ -26,3 +26,6 @@ Route::post('/store', 'TaskController@store') -> name('store');
 //modifica un task
 Route::get('/edit/{id}', 'TaskController@edit') -> name('edit');
 Route::post('/update/{id}', 'TaskController@update') -> name('update');
+
+//eliminare un task
+Route::get('/delete/{id}', 'TaskController@delete') -> name('delete');

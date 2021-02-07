@@ -2,8 +2,6 @@
 
 @section('section')
 
-  {{-- <a href="{{route('home')}}">Back</a> --}}
-
   <h1>Insert a new task:</h1>
 
   <form action="{{route('store')}}" method="post">
