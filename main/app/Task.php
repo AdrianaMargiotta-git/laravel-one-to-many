@@ -17,4 +17,10 @@ class Task extends Model
     public function employee(){
         return $this->belongsTo(Employee::class);
     }
+
+    //inserire funzione per la relazione belongsToMany
+    //più typologies eseguono più task
+    public function typologies(){
+        return $this->belongsToMany(Typology::class);
+    }
 }

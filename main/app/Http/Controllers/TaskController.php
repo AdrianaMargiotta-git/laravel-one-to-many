@@ -8,6 +8,7 @@ use App\Employee;
 
 class TaskController extends Controller
 {
+/********************TASK********************/    
     //mostrare tutti i task
     public function index(){
         $tasks = Task::all();
@@ -64,5 +65,8 @@ class TaskController extends Controller
         $task -> delete();
         return redirect() -> route('home');
     }
+
+/********************TIPOLOGY********************/
+    // public
 
 }

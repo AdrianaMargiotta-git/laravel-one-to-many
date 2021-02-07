@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/********************TASK********************/
 //mostra tutti i task
 Route::get('/', 'TaskController@index') -> name('home');
 
@@ -29,3 +30,5 @@ Route::post('/update/{id}', 'TaskController@update') -> name('update');
 
 //eliminare un task
 Route::get('/delete/{id}', 'TaskController@delete') -> name('delete');
+
+/********************TASK********************/

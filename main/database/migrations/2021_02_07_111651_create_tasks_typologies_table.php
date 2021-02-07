@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignKeys extends Migration
+class CreateTasksTypologiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class AddForeignKeys extends Migration
      */
     public function up()
     {
-        Schema::table('tasks', function (Blueprint $table){
-            $table -> foreign('employee_id', 'job') 
-                -> references('id')
-                -> on('employees');
+        Schema::create('tasks_typologies', function (Blueprint $table) {
+            $table->id();
+
+            $table->bigInteger('task_id')->unsigned();
+            $table->bigInteger('typology_id')->unsigned();
+
+            $table->timestamps();
         });
     }
 
@@ -27,8 +30,6 @@ class AddForeignKeys extends Migration
      */
     public function down()
     {
-        Schema::table('tasks', function (Blueprint $table){
-            $table -> dropForeign('job');
-        });
+        Schema::dropIfExists('tasks_typologies');
     }
 }
