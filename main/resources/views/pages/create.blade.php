@@ -25,7 +25,15 @@
             <option value="{{$employee['id']}}">{{$employee['lastname']}}</option>
         @endforeach
     </select>
-    <br>
+    <br><br>
+
+    <label for="typologies[]">Typologies</label><br>
+    @foreach ($typologies as $typology)
+      <input name='typologies[]' type="checkbox" value="{{$typology -> id}}">
+        {{$typology -> name}} <br>
+    @endforeach
+    
+    <br><br>
     
     <input type="submit" name="" value="Create">
 

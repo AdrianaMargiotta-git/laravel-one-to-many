@@ -25,21 +25,32 @@ class TaskController extends Controller
     //modificare un task
     public function create(){
         $employees = Employee::all();
-        return view('pages.create', compact('employees'));
+        $typologies = Typology::all();
+        return view('pages.create', compact('employees', 'typologies'));
     }
     public function store(Request $request){
-        $validate = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'priority' => 'required',
-            'employee_id' => 'required',
-        ]);
-        $task = new Task;
-        $task['title'] = $validate['title'];
-        $task['description'] = $validate['description'];
-        $task['priority'] = $validate['priority'];
-        $task['employee_id'] = $validate['employee_id'];
+        // $validate = $request->validate([
+        //     'title' => 'required',
+        //     'description' => 'required',
+        //     'priority' => 'required',
+        //     'employee_id' => 'required',
+        // ]);
+        // $task = new Task;
+        // $task['title'] = $validate['title'];
+        // $task['description'] = $validate['description'];
+        // $task['priority'] = $validate['priority'];
+        // $task['employee_id'] = $validate['employee_id'];
+        // $task -> save();
+        // return redirect() -> route('home');
+        $data = $request -> all();
+        $employee = Employee::findOrFail($data['employee_id']);
+        $task = Task::make($request -> all());
+        $task -> employee() -> associate($employee);
         $task -> save();
+
+        $typologies = Typology::findOrFail($data['typologies']);
+        $task -> typologies() -> attach($typologies);
+
         return redirect() -> route('home');
     }
 
