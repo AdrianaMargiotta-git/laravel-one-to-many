@@ -56,18 +56,28 @@ class TaskController extends Controller
 
     //modificare un task
     public function edit($id){
-        $task = Task::findOrFail($id);
+        // $task = Task::findOrFail($id);
         $employees = Employee::all();
-        return view('pages.edit', compact('task', 'employees'));
+        $typologies = Typology::all();
+        $task = Task::findOrFail($id);
+        return view('pages.edit', compact('employees', 'typologies', 'task'));
     }
     public function update(Request $request, $id){
-        $validate = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'priority' => 'required',
-            'employee_id' => 'required',
-        ]);
-        Task::whereId($id) -> update($validate);
+        // $validate = $request->validate([
+        //     'title' => 'required',
+        //     'description' => 'required',
+        //     'priority' => 'required',
+        //     'employee_id' => 'required',
+        // ]);
+        // Task::whereId($id) -> update($validate);
+        $data = $request -> all();
+
+        $employee = Employee::findOrFail($data['employee_id']);
+        $task = Task::findOrFail($id);
+        $task -> update($data);
+        $task -> employee() -> associate($employee);
+        $task -> save();
+
         return redirect() -> route('home');
     }
 
