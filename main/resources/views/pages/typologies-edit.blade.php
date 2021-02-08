@@ -3,7 +3,7 @@
 @section('section')
 
   <h1>Create a new tipology task:</h1>
-  <a href="{{route('typologies-index')}}">Tipologies list</a>
+  <a href="{{route('typologies-index')}}">Tipologies list</a><br><br>
 
   <form action="{{route('typologies-update', $typology -> id)}}" method="post">
 
@@ -21,7 +21,7 @@
     <select name="taskassociate[]" multiple="multiple">
         @foreach ($tasks as $task)
             <option value="{{$task -> id}}" 
-              @if ($typology -> task -> contains($task -> id))
+              @if ($typology -> tasks -> contains($task -> id))
                 selected
               @endif>
                 {{$task -> title}}
