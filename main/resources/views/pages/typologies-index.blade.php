@@ -6,6 +6,7 @@
     @foreach ($typologies as $typology)
       <li>
         <a href="{{route('typologies-show', $typology -> id)}}">{{$typology -> name}}</a>
+        <a href="{{route('typologies-edit', $typology -> id)}}">Modify</a>
       </li>
     @endforeach
   </ul>

@@ -35,6 +35,12 @@ Route::get('/delete/{id}', 'TaskController@delete') -> name('delete');
 Route::get('/typologies', 'TaskController@typologies_index') -> name('typologies-index');
 Route::get('/typologies/show/{id}', 'TaskController@typologies_show') -> name('typologies-show');
 
+Route::get('/typologies/create', 'TaskController@typologies_create') -> name('typologies-create');
+Route::get('/typologies/store', 'TaskController@typologies_store') -> name('typologies-store');
+
+Route::get('/typologies/edit/{id}', 'TaskController@typologies_edit') -> name('typologies-edit');
+Route::get('/typologies/update/{id}', 'TaskController@typologies_update') -> name('typologies-update');
+
 /********************EMPLOYEE********************/
 Route::get('/employees', 'TaskController@employees_index') -> name('employees-index');
 Route::get('/employee/show/{id}', 'TaskController@employees_show') -> name('employees-show');

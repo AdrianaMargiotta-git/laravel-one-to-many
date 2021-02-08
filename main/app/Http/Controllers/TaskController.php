@@ -22,7 +22,7 @@ class TaskController extends Controller
         return view ('pages.show', compact('task'));
     }
 
-    //modificare un task
+    //craere un task
     public function create(){
         $employees = Employee::all();
         $typologies = Typology::all();
@@ -89,6 +89,7 @@ class TaskController extends Controller
     }
 
 /********************TIPOLOGY********************/
+    //mostrare una e più tipology
     public function typologies_index(){
         $typologies = Typology::all();
         return view('pages.typologies-index', compact('typologies'));
@@ -96,6 +97,34 @@ class TaskController extends Controller
     public function typologies_show($id){
         $typology = Typology::findOrFail($id);
         return view('pages.typologies-show', compact('typology'));
+    }
+
+    //craere una tipology
+    public function typologies_create(){
+        return view('pages.typologies-create');
+    }
+    public function typologies_store(Request $request){
+        $typologies = Typology::create($request -> all());
+        $task -> typologies() -> attach($typologies);
+        return redirect() -> route('typologies-show', $typology -> id);
+    }
+
+    //modificare una tipology
+    public function typologies_edit($id){
+        $typology = Typology::findOrFail($id);
+        $tasks = Task::all();
+        return view('pages.typologies-edit', compact('typology', 'tasks'));
+    }
+    public function typologies_update(Request $request, $id){
+        $typology = Typology::findOrFail($id);
+        if (array_key_exists('taskassociate', $request -> all())) {
+            $tasksList = Task::findOrFail($request['taskassociate']);
+            $typology -> tasks() -> sync($tasksList);
+        } else {
+            $typology -> tasks() -> detach();
+        }
+        $typology -> update($request -> all());
+        return redirect() -> route('typologies-show', $typology -> id);
     }
 
 /********************EMPLOYEE********************/
