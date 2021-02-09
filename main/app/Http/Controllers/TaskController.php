@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Validator;
 use App\Task;
 use App\Employee;
 use App\Typology;
+
+use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
 {
@@ -29,20 +32,14 @@ class TaskController extends Controller
         return view('pages.create', compact('employees', 'typologies'));
     }
     public function store(Request $request){
-        // $validate = $request->validate([
-        //     'title' => 'required',
-        //     'description' => 'required',
-        //     'priority' => 'required',
-        //     'employee_id' => 'required',
-        // ]);
-        // $task = new Task;
-        // $task['title'] = $validate['title'];
-        // $task['description'] = $validate['description'];
-        // $task['priority'] = $validate['priority'];
-        // $task['employee_id'] = $validate['employee_id'];
-        // $task -> save();
-        // return redirect() -> route('home');
         $data = $request -> all();
+
+        Validator::make($data, [
+            'title' => 'required|min:4|max:40',
+            'description' => 'required|min:4|max:260',
+            'priority' => 'required|integer|min:1|max:5',
+        ]) -> validate();
+
         $employee = Employee::findOrFail($data['employee_id']);
         $task = Task::make($request -> all());
         $task -> employee() -> associate($employee);
@@ -56,21 +53,19 @@ class TaskController extends Controller
 
     //modificare un task
     public function edit($id){
-        // $task = Task::findOrFail($id);
         $employees = Employee::all();
         $typologies = Typology::all();
         $task = Task::findOrFail($id);
         return view('pages.edit', compact('employees', 'typologies', 'task'));
     }
     public function update(Request $request, $id){
-        // $validate = $request->validate([
-        //     'title' => 'required',
-        //     'description' => 'required',
-        //     'priority' => 'required',
-        //     'employee_id' => 'required',
-        // ]);
-        // Task::whereId($id) -> update($validate);
         $data = $request -> all();
+
+        Validator::make($data, [
+            'title' => 'required|min:4|max:40',
+            'description' => 'required|min:4|max:260',
+            'priority' => 'required|integer|min:1|max:5',
+        ]) -> validate();
 
         $employee = Employee::findOrFail($data['employee_id']);
         $task = Task::findOrFail($id);
@@ -104,6 +99,12 @@ class TaskController extends Controller
         return view('pages.typologies-create');
     }
     public function typologies_store(Request $request){
+        
+        Validator::make($request -> all(), [
+            'name' => 'required|min:4|max:60',
+            'description' => 'required|min:4|max:260',
+        ]) -> validate();
+
         $typologies = Typology::create($request -> all());
         $task -> typologies() -> attach($typologies);
         return redirect() -> route('typologies-show', $typology -> id);
@@ -116,6 +117,12 @@ class TaskController extends Controller
         return view('pages.typologies-edit', compact('typology', 'tasks'));
     }
     public function typologies_update(Request $request, $id){
+
+        Validator::make($request -> all(), [
+            'name' => 'required|min:4|max:60',
+            'description' => 'required|min:4|max:260',
+        ]) -> validate();
+
         $typology = Typology::findOrFail($id);
         if (array_key_exists('taskassociate', $request -> all())) {
             $tasksList = Task::findOrFail($request['taskassociate']);
