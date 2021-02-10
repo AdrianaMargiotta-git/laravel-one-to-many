@@ -14,3 +14,5 @@
 <p>La relazione tra task e employee è di tipo 1aN (uno a molti) quindi: un employee esegue piu' task, un task e' eseguito da un unico employee</p>
 
 <p>La relazione tra task e typologies è di tipo NaM (molti a molti).</p>
+
+<p>Aggiungere la validazione a fronte di ogni inserimento (create & update), cercando di testare i vari controlli che avete a disposizione a partire dalla documentazione vista in classe.</p>
